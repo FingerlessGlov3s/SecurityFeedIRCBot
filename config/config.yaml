@@ -1,0 +1,61 @@
+host: chat.freenode.net
+ssl_port: 6697
+nick: SecFeed[Bot]
+alerts_channel: '###SecFeedBot-alerts'
+mode: +igR
+feeds:
+  "#securityfeed":
+    r/Securitynews:
+      url: https://www.reddit.com/r/Securitynews/new/.rss
+      shorten: false
+      period: 0.5
+      sub:
+        url:
+          pattern: ^https://www\.reddit\.com/r/.+?/comments/(?P<id>.+?)/.+$
+          repl: https://redd.it/\g<id>
+    r/NetSec:
+      url: https://www.reddit.com/r/netsec/new/.rss
+      shorten: false
+      period: 0.5
+      sub:
+        url:
+          pattern: ^https://www\.reddit\.com/r/.+?/comments/(?P<id>.+?)/.+$
+          repl: https://redd.it/\g<id>
+    KrebsonSecurity:
+      url: https://krebsonsecurity.com/feed/
+      period: 0.5
+    TheHackerNews:
+      url: https://feeds.feedburner.com/TheHackersNews?format=xml
+      period: 0.5
+    HaveIBeenPwned:
+      url: https://feeds.feedburner.com/HaveIBeenPwnedLatestBreaches?format=xml
+      period: 0.5
+    ESetSecuityBlog:
+      url: https://feeds.feedburner.com/eset/blog?format=xml
+      period: 0.5
+    NCSC:
+      url: https://www.ncsc.gov.uk/api/1/services/v1/all-rss-feed.xml
+      period: 0.5
+    LinuxSecurity:
+      url: https://linuxsecurity.com/linuxsecurity_hybrid.xml
+      period: 0.5
+    NVD-NIST:
+      url: https://nvd.nist.gov/feeds/xml/cve/misc/nvd-rss.xml
+      period: 0.5
+    OPNSense:
+      url: https://opnsense.org/blog/feed/
+      period: 0.5
+    NetGate:
+      url: https://www.netgate.com/feed.xml
+      period: 0.5
+      whitelist:
+        title:
+          - RELEASE
+    CiscoSecurityAdvisory:
+      url: https://tools.cisco.com/security/center/psirtrss20/CiscoSecurityAdvisory.xml
+      period: 0.5
+  "###SecFeedBot-alerts":
+    irc-rss-feed-bot:
+      url: https://github.com/impredicative/irc-rss-feed-bot/releases.atom
+      period: 24
+      shorten: false
