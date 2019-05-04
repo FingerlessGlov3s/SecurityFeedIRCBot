@@ -36,12 +36,15 @@ feeds:
     NCSC:
       url: https://www.ncsc.gov.uk/api/1/services/v1/all-rss-feed.xml
       period: 0.5
-    LinuxSecurity:
+    LinuxSecurity: # Includes ArchLinux,CentOS,Debian,DebianLTS,Fedora,Gentoo,Mageia,Redhat,ScientificLinux,Slackware,SUSE,Ubuntu,OpenSUSE security advisories and updates
       url: https://linuxsecurity.com/linuxsecurity_hybrid.xml
       period: 0.5
     NVD-NIST:
       url: https://nvd.nist.gov/feeds/xml/cve/misc/nvd-rss.xml
       period: 0.5
+      whitelist:
+        title:
+          - \(.*\)
     OPNSense:
       url: https://opnsense.org/blog/feed/
       period: 0.5
@@ -54,6 +57,11 @@ feeds:
     CiscoSecurityAdvisory:
       url: https://tools.cisco.com/security/center/psirtrss20/CiscoSecurityAdvisory.xml
       period: 0.5
+    SecurityWeek:
+      url: https://feeds.feedburner.com/Securityweek?format=xml
+      period: 0.5
+    TroyHunt:
+      url: https://feeds.feedburner.com/TroyHunt?format=xml
   "###SecFeedBot-alerts":
     irc-rss-feed-bot:
       url: https://github.com/impredicative/irc-rss-feed-bot/releases.atom
