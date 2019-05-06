@@ -1,7 +1,7 @@
 host: chat.freenode.net
 ssl_port: 6697
 nick: SecFeed[Bot]
-alerts_channel: '###SecFeedBot-alerts'
+alerts_channel: '###x2048bot-alerts'
 mode: +igR
 feeds:
   "#securityfeed":
@@ -62,7 +62,29 @@ feeds:
       period: 0.5
     TroyHunt:
       url: https://feeds.feedburner.com/TroyHunt?format=xml
-  "###SecFeedBot-alerts":
+    US-CERT:
+      url: https://www.us-cert.gov/ncas/alerts.xml
+      period: 0.5
+    FreeBSDSecurityNotice:
+      url: https://www.freebsd.org/security/rss.xml
+      period: 0.5
+    UbuntuSecurityNotice:
+      url: https://usn.ubuntu.com/usn/atom.xml
+      period: 0.5
+    DebianSecurityNotice:
+      url: https://www.debian.org/security/dsa
+      period: 0.5
+    ExploitDB:
+      url: https://www.exploit-db.com/rss.xml
+    SchneierSecurity:
+      url: https://www.schneier.com/blog/atom.xml
+    PacketstormSecurity:
+      url: https://rss.packetstormsecurity.com/
+    GoogleProjectZero:
+      url: https://googleprojectzero.blogspot.com/feeds/posts/default
+    SecurityFocus:
+      url: https://www.securityfocus.com/rss/vulnerabilities.xml
+  "###x2048bot-alerts":
     irc-rss-feed-bot:
       url: https://github.com/impredicative/irc-rss-feed-bot/releases.atom
       period: 24
