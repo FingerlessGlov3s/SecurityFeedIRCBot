@@ -81,7 +81,7 @@ feeds:
     PacketstormSecurity:
       url: https://rss.packetstormsecurity.com/
       blacklist:
-        title: Ubuntu Security Notice.* # UbuntuSecurityNotice already give us this
+        title: ^Ubuntu\ Security\ Notice\b # UbuntuSecurityNotice already give us this
     GoogleProjectZero:
       url: https://googleprojectzero.blogspot.com/feeds/posts/default
     SecurityFocus:
