@@ -86,6 +86,17 @@ feeds:
       url: https://googleprojectzero.blogspot.com/feeds/posts/default
     SecurityFocus:
       url: https://www.securityfocus.com/rss/vulnerabilities.xml
+    ArXiv:cs.CR:
+      url: https://export.arxiv.org/rss/cs.CR
+      period: 3
+      https: true
+      shorten: false
+      format:
+        re:
+          title: '^(?P<name>.+?)\.?\ \(arXiv:.+(?P<ver>v\d+)\ '
+        str:
+          title: '{name}'
+          url: '{url}{ver}'
   "###x2048bot-alerts":
     irc-rss-feed-bot:
       url: https://github.com/impredicative/irc-rss-feed-bot/releases.atom
