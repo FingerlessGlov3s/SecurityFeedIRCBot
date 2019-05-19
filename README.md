@@ -9,8 +9,9 @@ If you wish to add a RSS feed just create a request.
 :-)
 
 
---- Docker Compose
+**Docker Compose**
 
+```
   ircbot:
     container_name: ircbot
     hostname: ircbot
@@ -24,3 +25,4 @@ If you wish to add a RSS feed just create a request.
       - /docker/ircbots/securityfeed/config:/config
     env_file:
       - /docker/ircbots/securityfeed/secrets.env
+```
