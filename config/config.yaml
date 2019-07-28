@@ -105,6 +105,10 @@ feeds:
       style:
         name:
           fg: royal
+      sub:
+        title:  # Removes .com and similar suffixes.
+          pattern: (?P<caption>.+) - (?P<source>.+?)\.(?:.+)
+          repl: \g<caption> - \g<source>
     TroyHunt:
       url: https://feeds.feedburner.com/TroyHunt?format=xml
       style:
