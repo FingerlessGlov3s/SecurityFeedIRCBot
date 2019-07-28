@@ -99,6 +99,12 @@ feeds:
       style:
         name:
           fg: royal
+    gNews:
+      url: https://news.google.com/rss/topics/CAAqBwgKMKz3gQsw5KP-Ag?hl=en
+      period: 0.5
+      style:
+        name:
+          fg: royal
     TroyHunt:
       url: https://feeds.feedburner.com/TroyHunt?format=xml
       style:
