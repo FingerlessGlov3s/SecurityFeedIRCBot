@@ -5,64 +5,97 @@ alerts_channel: '###x2048bot-alerts'
 mode: +igR
 feeds:
   "#securityfeed":
-    r/Securitynews:
-      url: https://www.reddit.com/r/Securitynews/new/.rss
+    ArXiv:cs.CR:
+      url: https://export.arxiv.org/rss/cs.CR
+      period: 3
+      https: true
       shorten: false
-      period: 0.5
       style:
         name:
-          fg: orange
-      sub:
-        url:
-          pattern: ^https://www\.reddit\.com/r/.+?/comments/(?P<id>.+?)/.+$
-          repl: https://redd.it/\g<id>
-    r/NetSec:
-      url: https://www.reddit.com/r/netsec/new/.rss
-      shorten: false
-      period: 0.5
+          fg: yellow
+      format:
+        re:
+          title: '^(?P<name>.+?)\.?\ \(arXiv:.+(?P<ver>v\d+)\ '
+        str:
+          title: '{name}'
+          url: '{url}{ver}'
+    CiscoSecurityAdvisory:
+      url: https://tools.cisco.com/security/center/psirtrss20/CiscoSecurityAdvisory.xml
       style:
         name:
-          fg: orange
-      sub:
-        url:
-          pattern: ^https://www\.reddit\.com/r/.+?/comments/(?P<id>.+?)/.+$
-          repl: https://redd.it/\g<id>
-    KrebsonSecurity:
-      url: https://krebsonsecurity.com/feed/
+          fg: green
+      period: 0.5
+    DebianSecurityNotice:
+      url: https://www.debian.org/security/dsa
       style:
         name:
-          fg: orange
+          fg: green
       period: 0.5
-    TheHackerNews:
-      url: https://feeds.feedburner.com/TheHackersNews?format=xml
-      period: 0.5
-      style:
-        name:
-          fg: orange
-    HaveIBeenPwned:
-      url: https://feeds.feedburner.com/HaveIBeenPwnedLatestBreaches?format=xml
-      period: 0.5
-      style:
-        name:
-          fg: purple
     ESetSecuityBlog:
       url: https://feeds.feedburner.com/eset/blog?format=xml
       period: 0.5
       style:
         name:
           fg: purple
-    NCSC:
-      url: https://www.ncsc.gov.uk/api/1/services/v1/all-rss-feed.xml
-      period: 0.5
+    ExploitDB:
+      url: https://www.exploit-db.com/rss.xml
       style:
         name:
           fg: green
+    FreeBSDSecurityNotice:
+      url: https://www.freebsd.org/security/rss.xml
+      style:
+        name:
+          fg: green
+      period: 0.5
+    gNews:
+      url: https://news.google.com/rss/topics/CAAqBwgKMKz3gQsw5KP-Ag?hl=en
+      period: 0.5
+      style:
+        name:
+          fg: royal
+      sub:
+        title:  # Removes .com and similar suffixes.
+          pattern: (?P<caption>.+) - (?P<source>.+?)\.(?:.+)
+          repl: \g<caption> - \g<source>
+    GoogleProjectZero:
+      url: https://googleprojectzero.blogspot.com/feeds/posts/default
+      style:
+        name:
+          fg: green
+    HaveIBeenPwned:
+      url: https://feeds.feedburner.com/HaveIBeenPwnedLatestBreaches?format=xml
+      period: 0.5
+      style:
+        name:
+          fg: purple
+    KrebsonSecurity:
+      url: https://krebsonsecurity.com/feed/
+      style:
+        name:
+          fg: orange
+      period: 0.5
     LinuxSecurity: # Includes ArchLinux,CentOS,Debian,DebianLTS,Fedora,Gentoo,Mageia,Redhat,ScientificLinux,Slackware,SUSE,Ubuntu,OpenSUSE security advisories and updates
       url: https://linuxsecurity.com/linuxsecurity_hybrid.xml
       period: 0.5
       style:
         name:
           fg: green
+    NCSC:
+      url: https://www.ncsc.gov.uk/api/1/services/v1/all-rss-feed.xml
+      period: 0.5
+      style:
+        name:
+          fg: green
+    NetGate:
+      url: https://www.netgate.com/feed.xml
+      period: 0.5
+      style:
+        name:
+          fg: purple
+      whitelist:
+        title:
+          - RELEASE
     NVD-NIST:
       url: https://nvd.nist.gov/feeds/xml/cve/misc/nvd-rss.xml
       period: 0.5
@@ -78,73 +111,6 @@ feeds:
       style:
         name:
           fg: purple
-    NetGate:
-      url: https://www.netgate.com/feed.xml
-      period: 0.5
-      style:
-        name:
-          fg: purple
-      whitelist:
-        title:
-          - RELEASE
-    CiscoSecurityAdvisory:
-      url: https://tools.cisco.com/security/center/psirtrss20/CiscoSecurityAdvisory.xml
-      style:
-        name:
-          fg: green
-      period: 0.5
-    SecurityWeek:
-      url: https://feeds.feedburner.com/Securityweek?format=xml
-      period: 0.5
-      style:
-        name:
-          fg: royal
-    gNews:
-      url: https://news.google.com/rss/topics/CAAqBwgKMKz3gQsw5KP-Ag?hl=en
-      period: 0.5
-      style:
-        name:
-          fg: royal
-      sub:
-        title:  # Removes .com and similar suffixes.
-          pattern: (?P<caption>.+) - (?P<source>.+?)\.(?:.+)
-          repl: \g<caption> - \g<source>
-    TroyHunt:
-      url: https://feeds.feedburner.com/TroyHunt?format=xml
-      style:
-        name:
-          fg: orange
-    US-CERT:
-      url: https://www.us-cert.gov/ncas/alerts.xml
-      period: 0.5
-    FreeBSDSecurityNotice:
-      url: https://www.freebsd.org/security/rss.xml
-      style:
-        name:
-          fg: green
-      period: 0.5
-    UbuntuSecurityNotice:
-      url: https://usn.ubuntu.com/usn/atom.xml
-      style:
-        name:
-          fg: green
-      period: 0.5
-    DebianSecurityNotice:
-      url: https://www.debian.org/security/dsa
-      style:
-        name:
-          fg: green
-      period: 0.5
-    ExploitDB:
-      url: https://www.exploit-db.com/rss.xml
-      style:
-        name:
-          fg: green
-    SchneierSecurity:
-      url: https://www.schneier.com/blog/atom.xml
-      style:
-        name:
-          fg: orange
     PacketstormSecurity:
       url: https://rss.packetstormsecurity.com/
       blacklist:
@@ -152,30 +118,64 @@ feeds:
       style:
         name:
           fg: green
-    GoogleProjectZero:
-      url: https://googleprojectzero.blogspot.com/feeds/posts/default
+    r/NetSec:
+      url: https://www.reddit.com/r/netsec/new/.rss
+      shorten: false
+      period: 0.5
       style:
         name:
-          fg: green
+          fg: orange
+      sub:
+        url:
+          pattern: ^https://www\.reddit\.com/r/.+?/comments/(?P<id>.+?)/.+$
+          repl: https://redd.it/\g<id>
+    r/Securitynews:
+      url: https://www.reddit.com/r/Securitynews/new/.rss
+      shorten: false
+      period: 0.5
+      style:
+        name:
+          fg: orange
+      sub:
+        url:
+          pattern: ^https://www\.reddit\.com/r/.+?/comments/(?P<id>.+?)/.+$
+          repl: https://redd.it/\g<id>
+    SchneierSecurity:
+      url: https://www.schneier.com/blog/atom.xml
+      style:
+        name:
+          fg: orange
     SecurityFocus:
       url: https://www.securityfocus.com/rss/vulnerabilities.xml
       style:
         name:
           fg: green
-    ArXiv:cs.CR:
-      url: https://export.arxiv.org/rss/cs.CR
-      period: 3
-      https: true
-      shorten: false
+    SecurityWeek:
+      url: https://feeds.feedburner.com/Securityweek?format=xml
+      period: 0.5
       style:
         name:
-          fg: yellow
-      format:
-        re:
-          title: '^(?P<name>.+?)\.?\ \(arXiv:.+(?P<ver>v\d+)\ '
-        str:
-          title: '{name}'
-          url: '{url}{ver}'
+          fg: royal
+    TheHackerNews:
+      url: https://feeds.feedburner.com/TheHackersNews?format=xml
+      period: 0.5
+      style:
+        name:
+          fg: orange
+    TroyHunt:
+      url: https://feeds.feedburner.com/TroyHunt?format=xml
+      style:
+        name:
+          fg: orange
+    UbuntuSecurityNotice:
+      url: https://usn.ubuntu.com/usn/atom.xml
+      style:
+        name:
+          fg: green
+      period: 0.5
+    US-CERT:
+      url: https://www.us-cert.gov/ncas/alerts.xml
+      period: 0.5
   "###x2048bot-alerts":
     irc-rss-feed-bot:
       url: https://github.com/impredicative/irc-rss-feed-bot/releases.atom
