@@ -54,7 +54,7 @@ feeds:
       style:
         name:
           fg: royal
-      sub:
+      sub: &SuffixSub
         title:  # Removes .com and similar suffixes.
           pattern: (?P<caption>.+) - (?P<source>.+?)\.(?:.+)
           repl: \g<caption> - \g<source>
@@ -137,6 +137,7 @@ feeds:
         name:
           fg: orange
       sub:
+        <<: *SuffixSub
         url:
           pattern: ^https://www\.reddit\.com/r/.+?/comments/(?P<id>.+?)/.+$
           repl: https://redd.it/\g<id>
