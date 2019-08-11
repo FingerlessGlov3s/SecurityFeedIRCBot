@@ -58,6 +58,37 @@ feeds:
         title:  # Removes .com and similar suffixes.
           pattern: (?P<caption>.+) - (?P<source>.+?)\.(?:.+)
           repl: \g<caption> - \g<source>
+      blacklist:
+        title:
+          # Market-research case-insensitive:
+          - \b(?i:mar[kl]et\ )(?i:analysis|augmentation|deep\ analysis|development|driving\ factors|in\-depth\ analysis|forecast|foreseen\ to\ grow|growing\ massively|growth|insights|opportunity|outlook|overview|research|revenue|size|specifications|study|vendor)\b
+          - \b(?i:activity\ forecast|analysis\ to\ \d{4}|astonishing\ growth\ by\ \d{4}|business\ insights|current\ trends\ \d{4}|emerging\ trends|forecast\ till\ \d{4}|forecast\ to\ \d{4}|forecasts\ report|global\ outlook\ \d{4}|growth\ prospect\ by|industry\ forecast|industry\ report|key\ players|key\ project\ opportunities|key\ vendors|leading\ vendors|product\ types\ analysis|service\ market|thriving\ worldwide|top\ \w+\ contractors|top\ players|trend\ forecast|worldwide\ industry\ share)\b
+          - \b(?i:by|during)\ \d{4}[–\-]\d{4}\b
+          - \b(?i:market\ ?:)
+          # Market-research case-sensitive:
+          - \b(?:CAGR|Market \d{4}|MR\ [Ss]tudy)\b
+          # Starts with:
+          - '^VIDEO:'
+        url:
+          - ^http://  # HTTP sites (not HTTPS)
+          # Paywalled .com news sites:
+          - ^https://(?:www\.)?(?:bloomberg|businessgreen|ctovision|economist|ft|joc|latimes|leadertelegram|medscape|washingtonpost|waterstechnology|wsj)\.com/
+          # Paywalled non-.com news sites:
+          - ^https://(?:www\.)?(?:eenews\.net|independent\.ie|telegraph\.co\.uk)/
+          # Market-research site patterns:
+          - ^https://(?:www\.)?(?:\w*?(?:industryjournal|industryreports|marketnews|marketresearch|technologymarket)\w*?\.|[a-z]{6,}24\.(?:com|us)/)
+          # Market-research .com sites:
+          - ^https://(?:www\.)?(?:amazingherald)\.com/
+          # Market-research non-.com sites:
+          - ^https://(?:www\.)?(?:risemedia\.net)/
+          # Poor-quality .com sites:
+          - ^https://(?:www\.)?futurism\.com/
+          # Propaganda .com sites:
+          - ^https://(?:www\.)?(?:aldergrovestar|commdiginews|breitbart|dailysignal|pjmedia|powerlineblog|zanesvilletimesrecorder)\.com/
+          # Propaganda non-.com sites:
+          - ^https://(?:www\.)?(?:heartland\.org)/
+          # Jobs sites:
+          - ^https://(?:www\.)?(?:builtinchicago\.org)/
     GoogleProjectZero:
       url: https://googleprojectzero.blogspot.com/feeds/posts/default
       style:
