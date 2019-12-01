@@ -6,7 +6,7 @@ mode: +igR
 feeds:
   "#securityfeed":
     ArXiv:cs.CR:
-      url: https://export.arxiv.org/rss/cs.CR
+      url: http://export.arxiv.org/rss/cs.CR
       period: 3
       https: true
       shorten: false
