@@ -5,20 +5,6 @@ alerts_channel: '###x2048bot-alerts'
 mode: +igR
 feeds:
   "#securityfeed":
-    ArXiv:cs.CR:
-      url: http://export.arxiv.org/rss/cs.CR
-      period: 3
-      https: true
-      shorten: false
-      style:
-        name:
-          fg: yellow
-      format:
-        re:
-          title: '^(?P<name>.+?)\.?\ \(arXiv:.+(?P<ver>v\d+)\ '
-        str:
-          title: '{name}'
-          url: '{url}{ver}'
     CiscoSecurityAdvisory:
       url: https://tools.cisco.com/security/center/psirtrss20/CiscoSecurityAdvisory.xml
       style:
@@ -31,12 +17,6 @@ feeds:
         name:
           fg: green
       period: 0.5
-    ESetSecuityBlog:
-      url: https://feeds.feedburner.com/eset/blog?format=xml
-      period: 0.5
-      style:
-        name:
-          fg: purple
     ExploitDB:
       url: https://www.exploit-db.com/rss.xml
       style:
@@ -48,64 +28,12 @@ feeds:
         name:
           fg: green
       period: 0.5
-    gNews:
-      url: https://news.google.com/rss/topics/CAAqBwgKMKz3gQsw5KP-Ag?hl=en
-      period: 0.5
-      style:
-        name:
-          fg: royal
-      sub: &SuffixSub
-        title:  # Removes .com and similar suffixes.
-          pattern: (?P<caption>.+) - (?P<source>.+?)\.(?:.+)
-          repl: \g<caption> - \g<source>
-      blacklist:
-        title:
-          # Market-research case-insensitive:
-          - \b(?i:mar[kl]et\ )(?i:analysis|augmentation|deep\ analysis|development|driving\ factors|in\-depth\ analysis|forecast|foreseen\ to\ grow|growing\ massively|growth|insights|opportunity|outlook|overview|research|revenue|size|specifications|study|vendor)\b
-          - \b(?i:activity\ forecast|analysis\ to\ \d{4}|astonishing\ growth\ by\ \d{4}|business\ insights|current\ trends\ \d{4}|emerging\ trends|forecast\ till\ \d{4}|forecast\ to\ \d{4}|forecasts\ report|global\ outlook\ \d{4}|growth\ prospect\ by|industry\ forecast|industry\ report|key\ players|key\ project\ opportunities|key\ vendors|leading\ vendors|product\ types\ analysis|service\ market|thriving\ worldwide|top\ \w+\ contractors|top\ players|trend\ forecast|worldwide\ industry\ share)\b
-          - \b(?i:by|during)\ \d{4}[–\-]\d{4}\b
-          - \b(?i:market\ ?:)
-          # Market-research case-sensitive:
-          - \b(?:CAGR|Market \d{4}|MR\ [Ss]tudy)\b
-          # Starts with:
-          - '^VIDEO:'
-        url:
-          - ^http://  # HTTP sites (not HTTPS)
-          # Paywalled .com news sites:
-          - ^https://(?:www\.)?(?:bloomberg|businessgreen|ctovision|economist|ft|joc|latimes|leadertelegram|medscape|washingtonpost|waterstechnology|wsj)\.com/
-          # Paywalled non-.com news sites:
-          - ^https://(?:www\.)?(?:eenews\.net|independent\.ie|telegraph\.co\.uk)/
-          # Market-research site patterns:
-          - ^https://(?:www\.)?(?:\w*?(?:industryjournal|industryreports|marketnews|marketresearch|technologymarket)\w*?\.|[a-z]{6,}24\.(?:com|us)/)
-          # Market-research .com sites:
-          - ^https://(?:www\.)?(?:amazingherald)\.com/
-          # Market-research non-.com sites:
-          - ^https://(?:www\.)?(?:risemedia\.net)/
-          # Poor-quality .com sites:
-          - ^https://(?:www\.)?futurism\.com/
-          # Propaganda .com sites:
-          - ^https://(?:www\.)?(?:aldergrovestar|commdiginews|breitbart|dailysignal|pjmedia|powerlineblog|zanesvilletimesrecorder)\.com/
-          # Propaganda non-.com sites:
-          - ^https://(?:www\.)?(?:heartland\.org)/
-          # Jobs sites:
-          - ^https://(?:www\.)?(?:builtinchicago\.org)/
-    GoogleProjectZero:
-      url: https://googleprojectzero.blogspot.com/feeds/posts/default
-      style:
-        name:
-          fg: green
     HaveIBeenPwned:
       url: https://feeds.feedburner.com/HaveIBeenPwnedLatestBreaches?format=xml
       period: 0.5
       style:
         name:
           fg: purple
-    KrebsonSecurity:
-      url: https://krebsonsecurity.com/feed/
-      style:
-        name:
-          fg: orange
-      period: 0.5
     LinuxSecurity: # Includes ArchLinux,CentOS,Debian,DebianLTS,Fedora,Gentoo,Mageia,Redhat,ScientificLinux,Slackware,SUSE,Ubuntu,OpenSUSE security advisories and updates
       url: https://linuxsecurity.com/linuxsecurity_hybrid.xml
       period: 0.5
@@ -149,39 +77,35 @@ feeds:
       style:
         name:
           fg: green
-    r/NetSec:
-      url: https://www.reddit.com/r/netsec/new/.rss
-      shorten: false
-      period: 0.5
-      style:
-        name:
-          fg: orange
-      sub:
-        url:
-          pattern: ^https://www\.reddit\.com/r/.+?/comments/(?P<id>.+?)/.+$
-          repl: https://redd.it/\g<id>
-    r/Securitynews:
-      url: https://www.reddit.com/r/Securitynews/new/.rss
-      shorten: false
-      period: 0.5
-      style:
-        name:
-          fg: orange
-      sub:
-        <<: *SuffixSub
-        url:
-          pattern: ^https://www\.reddit\.com/r/.+?/comments/(?P<id>.+?)/.+$
-          repl: https://redd.it/\g<id>
-    SchneierSecurity:
-      url: https://www.schneier.com/blog/atom.xml
-      style:
-        name:
-          fg: orange
     SecurityFocus:
       url: https://www.securityfocus.com/rss/vulnerabilities.xml
       style:
         name:
           fg: green
+    UbuntuSecurityNotice:
+      url: https://usn.ubuntu.com/usn/atom.xml
+      style:
+        name:
+          fg: green
+      period: 0.5
+    US-CERT:
+      url: https://www.us-cert.gov/ncas/alerts.xml
+      period: 0.5
+  "#securitynews":
+    ArXiv:cs.CR:
+      url: http://export.arxiv.org/rss/cs.CR
+      period: 3
+      https: true
+      shorten: false
+      style:
+        name:
+          fg: yellow
+      format:
+        re:
+          title: '^(?P<name>.+?)\.?\ \(arXiv:.+(?P<ver>v\d+)\ '
+        str:
+          title: '{name}'
+          url: '{url}{ver}'
     SecurityWeek:
       url: https://feeds.feedburner.com/Securityweek?format=xml
       period: 0.5
@@ -199,15 +123,92 @@ feeds:
       style:
         name:
           fg: orange
-    UbuntuSecurityNotice:
-      url: https://usn.ubuntu.com/usn/atom.xml
+    gNews:
+      url: https://news.google.com/rss/topics/CAAqBwgKMKz3gQsw5KP-Ag?hl=en
+      period: 0.5
+      style:
+        name:
+          fg: royal
+      sub: &SuffixSub
+        title:  # Removes .com and similar suffixes.
+          pattern: (?P<caption>.+) - (?P<source>.+?)\.(?:.+)
+          repl: \g<caption> - \g<source>
+      blacklist:
+        title:
+          # Market-research case-insensitive:
+          - \b(?i:mar[kl]et\ )(?i:analysis|augmentation|deep\ analysis|development|driving\ factors|in\-depth\ analysis|forecast|foreseen\ to\ grow|growing\ massively|growth|insights|opportunity|outlook|overview|research|revenue|size|specifications|study|vendor)\b
+          - \b(?i:activity\ forecast|analysis\ to\ \d{4}|astonishing\ growth\ by\ \d{4}|business\ insights|current\ trends\ \d{4}|emerging\ trends|forecast\ till\ \d{4}|forecast\ to\ \d{4}|forecasts\ report|global\ outlook\ \d{4}|growth\ prospect\ by|industry\ forecast|industry\ report|key\ players|key\ project\ opportunities|key\ vendors|leading\ vendors|product\ types\ analysis|service\ market|thriving\ worldwide|top\ \w+\ contractors|top\ players|trend\ forecast|worldwide\ industry\ share)\b
+          - \b(?i:by|during)\ \d{4}[–\-]\d{4}\b
+          - \b(?i:market\ ?:)
+          # Market-research case-sensitive:
+          - \b(?:CAGR|Market \d{4}|MR\ [Ss]tudy)\b
+          # Starts with:
+          - '^VIDEO:'
+        url:
+          - ^http://  # HTTP sites (not HTTPS)
+          # Paywalled .com news sites:
+          - ^https://(?:www\.)?(?:bloomberg|businessgreen|ctovision|economist|ft|joc|latimes|leadertelegram|medscape|washingtonpost|waterstechnology|wsj)\.com/
+          # Paywalled non-.com news sites:
+          - ^https://(?:www\.)?(?:eenews\.net|independent\.ie|telegraph\.co\.uk)/
+          # Market-research site patterns:
+          - ^https://(?:www\.)?(?:\w*?(?:industryjournal|industryreports|marketnews|marketresearch|technologymarket)\w*?\.|[a-z]{6,}24\.(?:com|us)/)
+          # Market-research .com sites:
+          - ^https://(?:www\.)?(?:amazingherald)\.com/
+          # Market-research non-.com sites:
+          - ^https://(?:www\.)?(?:risemedia\.net)/
+          # Poor-quality .com sites:
+          - ^https://(?:www\.)?futurism\.com/
+          # Propaganda .com sites:
+          - ^https://(?:www\.)?(?:aldergrovestar|commdiginews|breitbart|dailysignal|pjmedia|powerlineblog|zanesvilletimesrecorder)\.com/
+          # Propaganda non-.com sites:
+          - ^https://(?:www\.)?(?:heartland\.org)/
+          # Jobs sites:
+          - ^https://(?:www\.)?(?:builtinchicago\.org)/
+    ESetSecuityBlog:
+      url: https://feeds.feedburner.com/eset/blog?format=xml
+      period: 0.5
+      style:
+        name:
+          fg: purple
+    r/Securitynews:
+      url: https://www.reddit.com/r/Securitynews/new/.rss
+      shorten: false
+      period: 0.5
+      style:
+        name:
+          fg: orange
+      sub:
+        <<: *SuffixSub
+        url:
+          pattern: ^https://www\.reddit\.com/r/.+?/comments/(?P<id>.+?)/.+$
+          repl: https://redd.it/\g<id>
+    KrebsonSecurity:
+      url: https://krebsonsecurity.com/feed/
+      style:
+        name:
+          fg: orange
+      period: 0.5
+    GoogleProjectZero:
+      url: https://googleprojectzero.blogspot.com/feeds/posts/default
       style:
         name:
           fg: green
+    r/NetSec:
+      url: https://www.reddit.com/r/netsec/new/.rss
+      shorten: false
       period: 0.5
-    US-CERT:
-      url: https://www.us-cert.gov/ncas/alerts.xml
-      period: 0.5
+      style:
+        name:
+          fg: orange
+      sub:
+        url:
+          pattern: ^https://www\.reddit\.com/r/.+?/comments/(?P<id>.+?)/.+$
+          repl: https://redd.it/\g<id>
+    SchneierSecurity:
+      url: https://www.schneier.com/blog/atom.xml
+      style:
+        name:
+          fg: orange
   "###x2048bot-alerts":
     irc-rss-feed-bot:
       url: https://github.com/impredicative/irc-rss-feed-bot/releases.atom
