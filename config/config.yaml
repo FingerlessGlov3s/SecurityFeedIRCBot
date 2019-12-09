@@ -28,6 +28,16 @@ feeds:
         name:
           fg: green
       period: 0.5
+    GithubAdvisories:
+      url: https://github.com/security-advisories
+      period: 0.5
+      style:
+        name:
+          fg: green
+      sub:
+        url:
+          pattern: ^tag:github\.com.*:(?P<id>.+)
+          repl: https://github.com/advisories/\g<id>      
     HaveIBeenPwned:
       url: https://feeds.feedburner.com/HaveIBeenPwnedLatestBreaches?format=xml
       period: 0.5
