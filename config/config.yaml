@@ -48,7 +48,7 @@ feeds:
         name:
           fg: purple
     LinuxSecurity: # Includes ArchLinux,CentOS,Debian,DebianLTS,Fedora,Gentoo,Mageia,Redhat,ScientificLinux,Slackware,SUSE,Ubuntu,OpenSUSE security advisories and updates
-      url: https://linuxsecurity.com/linuxsecurity_hybrid.xml
+      url: https://linuxsecurity.com/linuxsecurity_advisories.xml
       period: 0.5
       style:
         name:
