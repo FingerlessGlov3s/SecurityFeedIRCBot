@@ -1,8 +1,11 @@
 host: chat.freenode.net
 ssl_port: 6697
 nick: SecFeed[Bot]
+admin: FingerlessGloves!~Fingerles@*
 alerts_channel: '###x2048bot-alerts'
 mode: +igR
+publish:
+  github: SecurityFeed/FeedArchive
 feeds:
   "#securityfeed":
     CiscoSecurityAdvisory:
