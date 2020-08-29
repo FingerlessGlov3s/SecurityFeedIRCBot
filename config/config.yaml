@@ -53,6 +53,10 @@ feeds:
       style:
         name:
           fg: green
+      sub:
+        title:
+          pattern: '>$'
+          repl: ''
     NCSC:
       url: https://www.ncsc.gov.uk/api/1/services/v1/all-rss-feed.xml
       period: 0.5
